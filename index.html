@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yoendy Hernández - Pentester HTB | DevSecOps</title>
+        <style>
+            /* Reset básico */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Variables para dark mode */
+            :root {
+                --bg: #0a0a0a;
+                --text: #00ff41;
+                --neon: #00ff41;
+            }
+
+            [data-theme="light"] {
+                --bg: #f0f0f0;
+                --text: #1a1a1a;
+                --neon: #00aa00;
+            }
+
+            body {
+                font-family: 'Courier New', Courier, monospace;
+                background: var(--bg);
+                color: var(--text);
+                min-height: 100vh;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            /* Header */
+            header {
+                background: rgba(0,255,65,0.1);
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 2px solid var(--neon);
+            }
+
+            h1 {
+                font-size: 2rem;
+                text-shadow: 0 0 10px var(--neon);
+                animation: glow 2s infinite;
+            }
+
+            @keyframes glow {
+                0%, 100% { text-shadow: 0 0 10px var(--neon); }
+                50% { text-shadow: 0 0 20px var(--neon), 0 0 30px var(--neon); }
+            }
+
+            .subtitle {
+                margin-top: 1rem;
+                opacity: 0.8;
+            }
+
+            /* Toggle dark mode */
+            .theme-toggle {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--neon);
+                color: var(--bg);
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                font-family: inherit;
+                font-weight: bold;
+            }
+
+            /* Hero section */
+            .hero {
+                padding: 4rem 2rem;
+                text-align: center;
+            }
+
+            .skills {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                margin-top: 2rem;
+            }
+
+            .skill {
+                background: flex;
+                justify-content: center;
+                border: 1px solid var(--neon);
+                border-radius: 5px;
+            }
+
+            /*  Rsponsive mobile */
+            @media (max-width: 768px) {
+                h1 { font-size: 1.5rem; }
+                .skills { flex-direction: column; align-items: center; }
+            }
+        </style>
+    </head>
+    <body>
+        <button class="theme-toggle" onclick="toggleTheme()">☀️ Light</button>
+
+        <header>
+            <h1>$ yoendy@htb:~$ whoami</h1>
+            <p class="subtitle">Pentester | Linux/Docker | Python/JS | DevSecOps</p>
+        </header>
+
+        <section class="hero">
+            <h2>🔒 Hackeando mi futuro DevSecOps</h2>
+            <p>HTB Academy ✅ | Freelance CR | Máster en Ciberseguridad e Inteligencia Artificial</p>
+        
+            <div class="skills">
+                <div class="skill">🔓 Pentesting</div>
+                <div class="skill">🐧 Linux Admin</div>
+                <div class="skill">🐍 Python/Bash</div>
+                <div class="skill">🐳 Docker</div>
+            </div>
+        </section>
+
+        <script>
+            // Dark mode toggle persistente
+            function toggleTheme() {
+                const current = document.body.dataset.theme;
+                const newTheme = current === 'light' ? 'dark' : 'light';
+
+                document.body.dataset.theme = newTheme;
+                document.querySelector('.theme-toggle').textContent = newTheme === 'dark' ? '☀️ Light' : '🌙 Dark';
+        
+                // Guarda preferencia en localStorage
+                localStorage.setItem('theme', newTheme);
+            }
+
+            // Carga el tema guardado al iniciar
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                toggleTheme()
+            }
+        </script>
+    </body>
+</html>
